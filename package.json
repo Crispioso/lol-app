@@ -1,0 +1,30 @@
+{
+  "name": "lol-app",
+  "version": "0.0.1",
+  "description": "Lol app thing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crispioso/lol-app.git"
+  },
+  "keywords": [
+    "lol",
+    "league",
+    "of",
+    "legends"
+  ],
+  "author": "Crispin Merriman and Gareth Pugsley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Crispioso/lol-app/issues"
+  },
+  "homepage": "https://github.com/Crispioso/lol-app#readme",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "node-fetch": "^1.6.3"
+  }
+}

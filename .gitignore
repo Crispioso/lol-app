@@ -1,3 +1,6 @@
 
 #Webstorm configs
 .idea/
+
+#NPM
+node_modules
