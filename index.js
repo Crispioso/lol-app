@@ -1,12 +1,12 @@
 var express = require('express');
 var app = express();
 var fetch = require('node-fetch');
-var pukeySummonerId = 19299605;
+var summonerId = 19299605; //pukey
 var gaSummonerId = '';
 var apiKey= 'RGAPI-8bea7053-d5c4-474a-86e7-de2065a4c1d1';
-var currentGamePath = 'https://euw.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/EUW1/' + pukeySummonerId + '?api_key=' + apiKey;
+var currentGamePath = 'https://euw.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/EUW1/' + summonerId + '?api_key=' + apiKey;
 var championPath = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?api_key=' + apiKey;
-var championStatsPath = 'https://euw.api.pvp.net/api/lol/euw/v1.3/stats/by-summoner/' + pukeySummonerId + '/ranked?season=SEASON2016&api_key=' + apiKey;
+var championStatsPath = 'https://euw.api.pvp.net/api/lol/euw/v1.3/stats/by-summoner/' + summonerId + '/ranked?season=SEASON2016&api_key=' + apiKey;
 var data = {};
 var champions = {};
 var errorMessage = '';
@@ -33,7 +33,7 @@ fetch(currentGamePath).then(function(response) {
     }
 
     data = (responseJSON.participants).find(function(object) {
-        return object.summonerId == pukeySummonerId;
+        return object.summonerId == summonerId;
     });
 });
 
