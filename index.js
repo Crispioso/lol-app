@@ -9,6 +9,7 @@ var championPath = 'https://global.api.pvp.net/api/lol/static-data/euw/v1.2/cham
 var championStatsPath = 'https://euw.api.pvp.net/api/lol/euw/v1.3/stats/by-summoner/' + pukeySummonerId + '/ranked?season=SEASON2016&api_key=' + apiKey;
 var data = {};
 var champions = {};
+var errorMessage = '';
 
 app.set('view engine', 'ejs');
 
@@ -24,6 +25,13 @@ fetch(championPath).then(function(response) {
 fetch(currentGamePath).then(function(response) {
     return response.json();
 }).then(function(responseJSON) {
+
+    if (responseJSON.status.status_code !== 200) {
+        console.log('Warning: ' + responseJSON.status.status_code + ' response when getting current match data');
+        errorMessage = "User isn't online at the moment";
+        return;
+    }
+
     data = (responseJSON.participants).find(function(object) {
         return object.summonerId == pukeySummonerId;
     });
@@ -36,7 +44,12 @@ fetch(championStatsPath).then(function(response) {
 });
 
 app.get('/', function (req, res) {
-    // console.log(champions[data.championId].name);
+
+    if (errorMessage.length > 0) {
+        res.send(errorMessage);
+        return;
+    }
+
     res.send(champions[data.championId].name);
 });
 
